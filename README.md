@@ -9,12 +9,12 @@
 
 ## ⚡ Quick Usage
 
-Add this to your **GitHub profile README** (repo name = your username):
+Add this to your **GitHub profile README** :
 
 ```md
 ![samdev-pulse](https://samdev-pulse.vercel.app/api/profile?username=YOUR_GITHUB_USERNAME)
 ````
-
+`YOUR_GITHUB_USERNAME` : change this to your github username. <br>
 That’s it. Your profile now renders a live dashboard.
 
 ### Live Example Preview
