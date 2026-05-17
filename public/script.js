@@ -5,6 +5,8 @@
 
   const usernameInput = document.getElementById('username');
   const leetcodeInput = document.getElementById('leetcode');
+  const codeforcesInput = document.getElementById('codeforces');
+  const codechefInput = document.getElementById('codechef');
   const themeSelect = document.getElementById('theme-select');
   const alignSelect = document.getElementById('align-select');
   const previewImg = document.getElementById('preview-img');
@@ -22,6 +24,8 @@
   function updatePreview() {
     const username = usernameInput.value.trim() || 'SamXop123';
     const leetcode = leetcodeInput.value.trim();
+    const codeforces = codeforcesInput ? codeforcesInput.value.trim() : '';
+    const codechef = codechefInput ? codechefInput.value.trim() : '';
     const theme = themeSelect.value;
     const align = alignSelect.value;
     const hideTrophies = hideTrophiesCheck ? hideTrophiesCheck.checked : false;
@@ -30,6 +34,8 @@
     const params = new URLSearchParams({ username });
     if (theme) params.append('theme', theme);
     if (leetcode) params.append('leetcode', leetcode);
+    if (codeforces) params.append('codeforces', codeforces);
+    if (codechef) params.append('codechef', codechef);
     if (align && align !== 'left') params.append('align', align);
     if (hideTrophies) params.append('hide_trophies', 'true');
 
@@ -52,6 +58,8 @@
   function updateSnippetOnly() {
     const username = usernameInput.value.trim() || 'SamXop123';
     const leetcode = leetcodeInput.value.trim();
+    const codeforces = codeforcesInput ? codeforcesInput.value.trim() : '';
+    const codechef = codechefInput ? codechefInput.value.trim() : '';
     const theme = themeSelect.value;
     const align = alignSelect.value;
     const hideTrophies = hideTrophiesCheck ? hideTrophiesCheck.checked : false;
@@ -59,6 +67,8 @@
     const params = new URLSearchParams({ username });
     if (theme) params.append('theme', theme);
     if (leetcode) params.append('leetcode', leetcode);
+    if (codeforces) params.append('codeforces', codeforces);
+    if (codechef) params.append('codechef', codechef);
     if (align && align !== 'left') params.append('align', align);
     if (hideTrophies) params.append('hide_trophies', 'true');
 
@@ -164,6 +174,12 @@
     }
     if (leetcodeInput) {
       leetcodeInput.addEventListener('input', updateSnippetOnly);
+    }
+    if (codeforcesInput) {
+      codeforcesInput.addEventListener('input', updateSnippetOnly);
+    }
+    if (codechefInput) {
+      codechefInput.addEventListener('input', updateSnippetOnly);
     }
 
     // Changing theme, alignment, or hide-trophies updates snippet instantly
