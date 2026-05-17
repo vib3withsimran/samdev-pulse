@@ -195,7 +195,7 @@ router.get('/', async (req, res) => {
       card3Stats = [
         { label: 'Rating', value: String(codechefData.currentRating) },
         { label: 'Stars', value: codechefData.stars },
-        { label: 'Highest', value: String(codechefData.highestRating) },
+        { label: 'Division', value: codechefData.division ?? 'Div 4' },
       ];
     }
   } else {
