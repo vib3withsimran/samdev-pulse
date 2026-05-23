@@ -18,6 +18,7 @@ import { getCodeforcesData } from '../services/codeforces.service.js';
 import { getCodeChefData } from '../services/codechef.service.js';
 import { renderCPSection } from '../renderers/cp-section.renderer.js';
 import { sendGracefulErrorSvg } from '../renderers/error.renderer.js';
+import { sendLoadingSpinner } from '../renderers/loading.renderer.js';
 import { GitHubErrorCode } from '../services/github.service.js';
 import { logApiAccess } from '../utils/logger.js';
 
@@ -292,6 +293,13 @@ router.get('/', async (req, res) => {
       detail: error.message,
     });
   }
+});
+
+// Loading spinner endpoint
+router.get('/loading', (req, res) => {
+  const { theme } = req.query;
+  setTheme(theme || 'dark');
+  return sendLoadingSpinner(res);
 });
 
 export default router;

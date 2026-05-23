@@ -44,9 +44,16 @@
     const localUrl = `/api/profile?${params.toString()}&t=${Date.now()}`;
     const publicUrl = `${deployUrl}/api/profile?${params.toString()}`;
 
-    // Updates preview image
+    // Show loading spinner while fetching
     if (previewImg) {
-      previewImg.src = localUrl;
+      const loadingUrl = `/api/profile/loading?theme=${encodeURIComponent(theme || 'dark')}`;
+      previewImg.src = loadingUrl;
+      
+      // After a brief delay, fetch the actual profile
+      // This allows the loading spinner to be visible
+      setTimeout(() => {
+        previewImg.src = localUrl;
+      }, 300);
     }
 
     // Updates markdown snippet
