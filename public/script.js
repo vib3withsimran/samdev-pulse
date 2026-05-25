@@ -450,6 +450,93 @@ function setupThemeCardClicks() {
   }
 })();
 
+// Scroll-to-top button
+(function () {
+  'use strict';
+
+  const SCROLL_THRESHOLD = 320;
+
+  function createScrollToTopButton() {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'scroll-to-top';
+    button.setAttribute('aria-label', 'Scroll to top');
+    button.setAttribute('title', 'Scroll to top');
+    button.setAttribute('aria-hidden', 'true');
+    button.tabIndex = -1;
+    button.innerHTML = `
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
+
+    let isVisible = false;
+    let ticking = false;
+
+    function setVisibility(shouldShow) {
+      if (shouldShow === isVisible) return;
+
+      isVisible = shouldShow;
+      button.classList.toggle('is-visible', isVisible);
+      button.setAttribute('aria-hidden', String(!isVisible));
+      button.tabIndex = isVisible ? 0 : -1;
+    }
+
+    function updateVisibility() {
+      setVisibility(window.scrollY > SCROLL_THRESHOLD);
+      ticking = false;
+    }
+
+    function handleScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateVisibility);
+        ticking = true;
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    function mount() {
+      document.body.appendChild(button);
+      button.addEventListener('click', scrollToTop);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      updateVisibility();
+    }
+
+    function destroy() {
+      button.removeEventListener('click', scrollToTop);
+      window.removeEventListener('scroll', handleScroll);
+      button.remove();
+    }
+
+    return { mount, destroy };
+  }
+
+  function initScrollToTop() {
+    const scrollToTop = createScrollToTopButton();
+
+    scrollToTop.mount();
+
+    window.addEventListener('pagehide', function handlePageHide(event) {
+      if (event.persisted) return;
+      scrollToTop.destroy();
+      window.removeEventListener('pagehide', handlePageHide);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollToTop);
+  } else {
+    initScrollToTop();
+  }
+})();
+
 // Hamburger Menu
 (function () {
   'use strict';
