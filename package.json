@@ -7,7 +7,10 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node test-deployment.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:deployment": "node test-deployment.js",
     "test:unit": "node --test src/utils/svg-sanitizer.test.js src/utils/query-validation.test.js"
   },
   "keywords": [
@@ -23,5 +26,11 @@
     "dotenv": "^17.2.3",
     "express": "^4.22.2",
     "mongoose": "^9.1.6"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^9.3.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.4.1",
+    "jsdom": "^22.1.0"
   }
 }

@@ -1,5 +1,61 @@
 // samdev-pulse Preview functionality
 
+// Navbar light/dark theme toggle
+(function() {
+  'use strict';
+
+  const THEME_KEY = 'theme';
+  const LIGHT_THEME = 'light';
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {}
+  }
+
+  function applyTheme(theme) {
+    const isLight = theme === LIGHT_THEME;
+    document.documentElement.classList.remove('light-theme-pending');
+    document.body.classList.toggle('light-theme', isLight);
+
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', String(isLight));
+      toggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+      toggle.title = isLight ? 'Switch to dark theme' : 'Switch to light theme';
+    }
+  }
+
+  function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    const savedTheme = getStoredTheme();
+
+    applyTheme(savedTheme === LIGHT_THEME ? LIGHT_THEME : 'dark');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function() {
+      const nextTheme = document.body.classList.contains('light-theme') ? 'dark' : LIGHT_THEME;
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+})();
+
 (function() {
   'use strict';
 
