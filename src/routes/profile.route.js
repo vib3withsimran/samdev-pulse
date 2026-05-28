@@ -21,6 +21,8 @@ import { sendGracefulErrorSvg } from '../renderers/error.renderer.js';
 import { sendLoadingSpinner } from '../renderers/loading.renderer.js';
 import { GitHubErrorCode } from '../services/github.service.js';
 import { logApiAccess } from '../utils/logger.js';
+import { CF_RANK_MAP } from '../constants.js';
+import { normalizeProfileQuery, normalizeTheme } from '../utils/query-validation.js';
 
 const router = Router();
 
@@ -34,19 +36,6 @@ router.use((req, res, next) => {
 });
 
 const DEFAULT_USERNAME = process.env.DEFAULT_USERNAME || 'SamXop123';
-
-const CF_RANK_MAP = {
-  'newbie': 'Newbie',
-  'pupil': 'Pupil',
-  'specialist': 'Specialist',
-  'expert': 'Expert',
-  'candidate master': 'Cand.M',
-  'master': 'Master',
-  'international master': 'Int.M',
-  'grandmaster': 'GM',
-  'international grandmaster': 'Int.GM',
-  'legendary grandmaster': 'Leg.GM',
-};
 
 function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
@@ -71,52 +60,27 @@ router.get('/', async (req, res) => {
   try {
     logApiAccess(req).catch(err => console.error('Log failed:', err.message));
 
-    const { theme, leetcode, align, hide_trophies, codeforces, codechef } = req.query;
-    setTheme(theme || 'dark');
+  const {
+    theme,
+    align,
+    hideTrophies,
+    username,
+    isUsernameValid,
+    leetcode,
+    codeforces,
+    codechef,
+    shouldRenderLeetCode,
+  } = normalizeProfileQuery(req.query, { defaultUsername: DEFAULT_USERNAME });
+  setTheme(theme);
 
-    const rawUsername = typeof req.query.username === 'string' ? req.query.username : '';
-    const usernameRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$|^[a-zA-Z0-9]$/;
+  if (!isUsernameValid) {
+    return sendGracefulErrorSvg(res, {
+      code: 'INVALID_USERNAME',
+      username,
+    });
+  }
 
-    let username;
-    if (!rawUsername) {
-      username = DEFAULT_USERNAME;
-    } else if (!usernameRegex.test(rawUsername)) {
-      return sendGracefulErrorSvg(res, {
-        code: 'INVALID_USERNAME',
-        username: rawUsername,
-      });
-    } else {
-      username = rawUsername;
-    }
-
-    // Input Hardening: Enforce strict regex validation for platform usernames
-    const platformRegex = /^[a-zA-Z0-9_-]{1,40}$/;
-    if (leetcode && leetcode !== 'false' && !platformRegex.test(leetcode)) {
-      return sendGracefulErrorSvg(res, {
-        code: 'INVALID_USERNAME',
-        username: leetcode,
-      });
-    }
-    if (codeforces && !platformRegex.test(codeforces)) {
-      return sendGracefulErrorSvg(res, {
-        code: 'INVALID_USERNAME',
-        username: codeforces,
-      });
-    }
-    if (codechef && !platformRegex.test(codechef)) {
-      return sendGracefulErrorSvg(res, {
-        code: 'INVALID_USERNAME',
-        username: codechef,
-      });
-    }
-
-    const leetcodeDisabled = leetcode === 'false';
-    const shouldRenderLeetCode = Boolean(leetcode && !leetcodeDisabled);
-    let showRepositoryStats = !shouldRenderLeetCode;
-    const hideTrophies = hide_trophies === 'true';
-
-    const validAlignments = ['left', 'center', 'right'];
-    const headerAlign = validAlignments.includes(align) ? align : 'left';
+  let showRepositoryStats = !shouldRenderLeetCode;
 
     const result = await getGitHubUserData(username);
     if (!result.success) {
@@ -278,7 +242,7 @@ router.get('/', async (req, res) => {
       title: `${data.name || username}'s Dashboard`,
       subtitle: data.bio ? (data.bio.length > 60 ? data.bio.slice(0, 60) + '...' : data.bio) : `@${username}`,
       avatarUrl: data.avatarDataUri || data.avatarUrl,
-      align: headerAlign,
+      align,
     }),
 
     renderCardWithStats({ x: calculateCardX(0, cardWidth), y: row1Y, width: cardWidth, height: cardHeight, title: card1Title, stats: card1Stats }),
@@ -327,8 +291,7 @@ router.get('/', async (req, res) => {
 
 // Loading spinner endpoint
 router.get('/loading', (req, res) => {
-  const { theme } = req.query;
-  setTheme(theme || 'dark');
+  setTheme(normalizeTheme(req.query.theme));
   return sendLoadingSpinner(res);
 });
 

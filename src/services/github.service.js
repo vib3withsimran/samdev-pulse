@@ -81,8 +81,9 @@ async function fetchUserRepos(username) {
   const repos = [];
   let page = 1;
   const perPage = 100;
+  const MAX_PAGES = 3;
 
-  while (true) {
+  while (page <= MAX_PAGES) {
     const response = await fetch(
       `${GITHUB_API_BASE}/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`,
       { headers: getHeaders() }

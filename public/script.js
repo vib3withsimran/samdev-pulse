@@ -1,5 +1,61 @@
 // samdev-pulse Preview functionality
 
+// Navbar light/dark theme toggle
+(function() {
+  'use strict';
+
+  const THEME_KEY = 'theme';
+  const LIGHT_THEME = 'light';
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (error) {}
+  }
+
+  function applyTheme(theme) {
+    const isLight = theme === LIGHT_THEME;
+    document.documentElement.classList.remove('light-theme-pending');
+    document.body.classList.toggle('light-theme', isLight);
+
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', String(isLight));
+      toggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+      toggle.title = isLight ? 'Switch to dark theme' : 'Switch to light theme';
+    }
+  }
+
+  function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    const savedTheme = getStoredTheme();
+
+    applyTheme(savedTheme === LIGHT_THEME ? LIGHT_THEME : 'dark');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function() {
+      const nextTheme = document.body.classList.contains('light-theme') ? 'dark' : LIGHT_THEME;
+      applyTheme(nextTheme);
+      storeTheme(nextTheme);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+})();
+
 (function() {
   'use strict';
 
@@ -11,7 +67,7 @@
   const alignSelect = document.getElementById('align-select');
   const previewImg = document.getElementById('preview-img');
   const snippet = document.getElementById('snippet');
-  const copyBtn = document.getElementById('copy-btn');
+  const copyButtons = document.querySelectorAll('.copy-btn');
   const updateBtn = document.getElementById('update-preview-btn');
   const downloadBtn = document.getElementById('download-png-btn');
   const hideTrophiesCheck = document.getElementById('hide-trophies');
@@ -126,6 +182,16 @@
     `;
   }, 500);
 }
+  const DOWNLOAD_BTN_HTML = `
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+    Download PNG
+  `;
+
 
   /* Handles png download */
   async function handleDownloadPng() {
@@ -197,8 +263,7 @@
       URL.revokeObjectURL(url);
 
       downloadBtn.disabled = false;
-
-      downloadBtn.innerHTML = 'Download PNG';
+      downloadBtn.innerHTML = DOWNLOAD_BTN_HTML;
     };
 
     img.src = url;
@@ -207,35 +272,103 @@
     console.error(error);
 
     downloadBtn.disabled = false;
-
-    downloadBtn.innerHTML = 'Download PNG';
+    downloadBtn.innerHTML = DOWNLOAD_BTN_HTML; 
 
     alert('Failed to generate PNG');
   }
 }
-  async function handleCopyClick() {
-    if (!copyBtn || !snippet) return;
+const resetBtn = document.getElementById('resetBtn');
 
-    try {
-      await navigator.clipboard.writeText(snippet.textContent);
-      copyBtn.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        Copied!
-      `;
-      setTimeout(() => {
-        copyBtn.innerHTML = `
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          Copy
-        `;
-      }, 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+
+    usernameInput.value = '';
+    leetcodeInput.value = '';
+
+    if (codeforcesInput) {
+      codeforcesInput.value = '';
     }
-  }
+
+    if (codechefInput) {
+      codechefInput.value = '';
+    }
+
+    if (themeSelect) {
+      themeSelect.selectedIndex = 0;
+    }
+
+    if (alignSelect) {
+      alignSelect.selectedIndex = 0;
+    }
+
+    if (hideTrophiesCheck) {
+      hideTrophiesCheck.checked = false;
+    }
+
+    const errorMsg = document.getElementById('username-error');
+
+    if (errorMsg) {
+      errorMsg.style.display = 'none';
+    }
+
+    updatePreview();
+  });
+}
+  /* Handles copy button click */
+  // async function handleCopyClick() {
+  //   if (!copyBtn || !snippet) return;
+
+  //   try {
+  //     await navigator.clipboard.writeText(snippet.textContent);
+  //     copyBtn.innerHTML = `
+  //       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  //         <polyline points="20 6 9 17 4 12"/>
+  //       </svg>
+  //       Copied!
+  //     `;
+  //     setTimeout(() => {
+  //       copyBtn.innerHTML = `
+  //         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  //           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  //         </svg>
+  //         Copy
+  //       `;
+  //     }, 2000);
+  //   } catch (err) {
+  //     console.error('Failed to copy:', err);
+  //   }
+  // }
+
+function setupThemeCardClicks() {
+  document.querySelectorAll('.theme-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const theme = card.dataset.theme || '';
+
+      // Update the dropdown
+      if (themeSelect) {
+        themeSelect.value = theme;
+        updateSnippetOnly();
+      }
+
+      // Scroll to preview section
+      const previewSection = document.getElementById('preview');
+      if (previewSection) {
+        previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      if (usernameInput && usernameInput.value.trim()) {
+        updatePreview();
+      }
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+}
 
   /* Sets up smooth scrolling for anchor links */
   function setupSmoothScrolling() {
@@ -296,14 +429,69 @@
   downloadBtn.addEventListener('click', handleDownloadPng);
 }
 
-    if (copyBtn) {
-      copyBtn.addEventListener('click', handleCopyClick);
-    }
+
+  copyButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+
+      const wrapper =
+        button.closest('.code-wrapper, .code-section');
+
+      const snippet = wrapper.querySelector('code');
+
+      if (!snippet) return;
+
+      try {
+        await navigator.clipboard.writeText(
+          snippet.textContent
+        );
+
+  
+      const originalHTML = button.innerHTML;
+
+      const hasCopyText =
+        button.textContent.trim().toLowerCase().includes('copy');
+
+      if (hasCopyText) {
+        button.innerHTML = `
+          <svg width="16" height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Copied
+        `;
+      } else {
+        button.innerHTML = `
+          <svg width="16" height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        `;
+      }
+
+      setTimeout(() => {
+        button.innerHTML = originalHTML;
+      }, 2000);
+
+
+
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+  });
 
     setupSmoothScrolling();
 
     // Set up real-time snippet sync on every input change
     setupRealTimeSync();
+
+    setupThemeCardClicks();
 
     if (usernameInput && usernameInput.value.trim()) {
       updateSnippetOnly();
@@ -315,6 +503,93 @@
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+})();
+
+// Scroll-to-top button
+(function () {
+  'use strict';
+
+  const SCROLL_THRESHOLD = 320;
+
+  function createScrollToTopButton() {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'scroll-to-top';
+    button.setAttribute('aria-label', 'Scroll to top');
+    button.setAttribute('title', 'Scroll to top');
+    button.setAttribute('aria-hidden', 'true');
+    button.tabIndex = -1;
+    button.innerHTML = `
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
+
+    let isVisible = false;
+    let ticking = false;
+
+    function setVisibility(shouldShow) {
+      if (shouldShow === isVisible) return;
+
+      isVisible = shouldShow;
+      button.classList.toggle('is-visible', isVisible);
+      button.setAttribute('aria-hidden', String(!isVisible));
+      button.tabIndex = isVisible ? 0 : -1;
+    }
+
+    function updateVisibility() {
+      setVisibility(window.scrollY > SCROLL_THRESHOLD);
+      ticking = false;
+    }
+
+    function handleScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateVisibility);
+        ticking = true;
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    function mount() {
+      document.body.appendChild(button);
+      button.addEventListener('click', scrollToTop);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      updateVisibility();
+    }
+
+    function destroy() {
+      button.removeEventListener('click', scrollToTop);
+      window.removeEventListener('scroll', handleScroll);
+      button.remove();
+    }
+
+    return { mount, destroy };
+  }
+
+  function initScrollToTop() {
+    const scrollToTop = createScrollToTopButton();
+
+    scrollToTop.mount();
+
+    window.addEventListener('pagehide', function handlePageHide(event) {
+      if (event.persisted) return;
+      scrollToTop.destroy();
+      window.removeEventListener('pagehide', handlePageHide);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollToTop);
+  } else {
+    initScrollToTop();
   }
 })();
 
@@ -367,5 +642,139 @@
     document.addEventListener('DOMContentLoaded', initHamburger);
   } else {
     initHamburger();
+  }
+})();
+
+// ── Theme Gallery: Search & Filter + Show More ──
+(function () {
+  function initThemeFilter() {
+    const searchInput   = document.getElementById('themeSearch');
+    const chips         = document.querySelectorAll('.theme-chip');
+    const cards         = document.querySelectorAll('#themesGrid .theme-card');
+    const emptyState    = document.getElementById('themeEmptyState');
+    const countEl       = document.getElementById('themeResultCount');
+    const showMoreBtn   = document.getElementById('themeShowMoreBtn');
+    const showMoreWrap  = document.getElementById('themeShowMoreWrapper');
+
+    if (!searchInput || !emptyState || !countEl) return;
+
+    const totalCount  = cards.length;
+    const INITIAL_SHOW = 8;
+
+    const countAllEl = document.getElementById('count-all');
+    if (countAllEl) countAllEl.textContent = totalCount;
+
+    let activeCategory = 'all';
+    let searchQuery    = '';
+    let showingAll     = false;   // tracks whether user expanded the list
+
+    // ── Core filter function ──
+    function filterThemes() {
+      const isFiltering = searchQuery !== '' || activeCategory !== 'all';
+      let visible = 0;
+      let shownSoFar = 0;
+
+      cards.forEach(card => {
+        const name   = card.querySelector('.theme-name').textContent.toLowerCase();
+        const desc   = card.querySelector('.theme-desc').textContent.toLowerCase();
+        const cat    = card.dataset.cat    || '';
+        const colors = (card.dataset.colors || '').toLowerCase();
+
+        const matchesCat    = activeCategory === 'all' || cat === activeCategory;
+        const matchesSearch = searchQuery === '' ||
+          name.includes(searchQuery)   ||
+          desc.includes(searchQuery)   ||
+          cat.includes(searchQuery)    ||
+          colors.includes(searchQuery);
+
+        const matches = matchesCat && matchesSearch;
+
+        if (matches) {
+          visible++;
+
+          if (isFiltering || showingAll) {
+            // When filtering or expanded: show all matches
+            card.style.display = '';
+          } else {
+            // Default state: show only first INITIAL_SHOW
+            if (shownSoFar < INITIAL_SHOW) {
+              card.style.display = '';
+              shownSoFar++;
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Empty state
+      emptyState.style.display = visible === 0 ? 'block' : 'none';
+
+      // Result count text
+      if (isFiltering) {
+        countEl.textContent = `Showing ${visible} of ${totalCount} themes`;
+      } else if (showingAll) {
+        countEl.textContent = `Showing all ${totalCount} themes`;
+      } else {
+        countEl.textContent = `Showing ${Math.min(INITIAL_SHOW, visible)} of ${totalCount} themes`;
+      }
+
+      // Show/hide the Show More button
+      // Hide it when: filtering is active, or all cards already visible
+      if (isFiltering || visible <= INITIAL_SHOW) {
+        showMoreWrap.style.display = 'none';
+      } else {
+        showMoreWrap.style.display = 'flex';
+        showMoreBtn.textContent = showingAll ? 'Show Less' : `Show All Themes (${visible})`;
+        // re-attach the arrow SVG since we overwrote textContent
+        showMoreBtn.innerHTML = showingAll
+          ? `Show Less <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>`
+          : `Show All Themes (${visible}) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>`;
+        showMoreBtn.classList.toggle('expanded', showingAll);
+      }
+    }
+
+    // ── Show More button click ──
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', () => {
+        showingAll = !showingAll;
+        filterThemes();
+
+        // If collapsing back to 5, scroll up to themes section
+        if (!showingAll) {
+          document.getElementById('themes')
+            .scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    // ── Search input ──
+    searchInput.addEventListener('input', e => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      showingAll  = false;  // reset expansion on new search
+      filterThemes();
+    });
+
+    // ── Chip clicks ──
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeCategory = chip.dataset.cat;
+        showingAll     = false;  // reset expansion on category change
+        filterThemes();
+      });
+    });
+
+    // Run on load
+    filterThemes();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeFilter);
+  } else {
+    initThemeFilter();
   }
 })();
