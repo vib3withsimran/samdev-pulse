@@ -91,7 +91,15 @@ export async function logApiAccess(req) {
 
     const referer = req.headers['referer'] || req.headers['referrer'] || '';
     const userAgent = req.headers['user-agent'] || '';
-    const ip = req.ip || req.connection?.remoteAddress || req.socket?.remoteAddress || '';
+
+    // Mask the last octet of IPv4 addresses (e.g. 1.2.3.4 -> 1.2.3.0) and
+    // the last 64-bit group of IPv6 addresses before storing. Raw IP addresses
+    // are personal data under GDPR Article 4(1); masking preserves geo-level
+    // analytics while removing the individually identifying portion.
+    const rawIp = req.ip || req.connection?.remoteAddress || req.socket?.remoteAddress || '';
+    const ip = rawIp
+      .replace(/(\d+\.\d+\.\d+)\.\d+/, '$1.0')
+      .replace(/(:[0-9a-fA-F]{0,4}){2}$/, ':0000:0000');
 
     const githubFromReferer = extractGitHubUsername(referer);
     const githubUsername = githubFromReferer !== 'unknown' ? githubFromReferer : (req.query.username || 'unknown');
