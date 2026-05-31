@@ -206,7 +206,12 @@ router.get('/', async (req, res) => {
     const recentDays = contributionData.days.slice(-30);
     chartData = recentDays.map(day => day.count);
   } else {
-    chartData = generateFakeContributionData(30);
+    // Do not fall back to randomly generated data when the GitHub GraphQL
+    // API is unavailable. Embedding fake contribution bars in a README
+    // misleads viewers into believing they represent real activity.
+    // Use zeroed-out bars instead so the chart is visually consistent but
+    // clearly reflects that no data is available.
+    chartData = Array(30).fill(0);
   }
 
   const topLanguages = getTopLanguages(data.repos, 5);
