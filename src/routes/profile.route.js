@@ -207,20 +207,16 @@ router.get('/', async (req, res) => {
   }
 
   let chartData;
-
-if (
-  contributionData &&
-  Array.isArray(contributionData.days) &&
-  contributionData.days.length > 0
-) {
-  const recentDays = contributionData.days.slice(-30);
-
-  chartData = recentDays
-    .map(day => Number(day?.count))
-    .filter(Number.isFinite);
-
-  if (chartData.length === 0) {
-    chartData = generateFakeContributionData(30);
+  if (contributionData && contributionData.days && contributionData.days.length > 0) {
+    const recentDays = contributionData.days.slice(-30);
+    chartData = recentDays.map(day => day.count);
+  } else {
+    // Do not fall back to randomly generated data when the GitHub GraphQL
+    // API is unavailable. Embedding fake contribution bars in a README
+    // misleads viewers into believing they represent real activity.
+    // Use zeroed-out bars instead so the chart is visually consistent but
+    // clearly reflects that no data is available.
+    chartData = Array(30).fill(0);
   }
 } else {
   chartData = generateFakeContributionData(30);
