@@ -180,7 +180,6 @@ describe('svg.renderer.js', () => {
         height: 100,
         title: 'Test & Special',
       });
-      // Card title should be properly escaped for SVG
       expect(card).toContain('TEST &amp; SPECIAL');
     });
   });

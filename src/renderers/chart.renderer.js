@@ -1,11 +1,21 @@
 // Chart Renderer
-
+import {
+  buildContributionSummary,
+  buildLanguageSummary,
+} from '../utils/svg-accessibility.js';
 import { getTheme, LAYOUT } from './svg.renderer.js';
 import { sanitizeSvgValue } from '../utils/svg-sanitizer.js';
 
 // generate a smooth SVG path using cardinal spline interpolation
 function smoothPath(points) {
   if (points.length < 2) return '';
+  points = points.filter(
+  (p) =>
+    Number.isFinite(p?.x) &&
+    Number.isFinite(p?.y)
+);
+
+if (points.length < 2) return '';
 
   const tension = 0.3;
   let path = `M ${points[0].x} ${points[0].y}`;
@@ -29,21 +39,40 @@ function smoothPath(points) {
 
 // scale data points to fit within chart dimensions
 function scaleData(data, width, height, padding) {
-  const maxVal = Math.max(...data);
-  const minVal = Math.min(...data);
+  if (!Array.isArray(data) || data.length === 0) {
+  return [];
+}
+  const numericData = data
+  .map((v) => Number(v))
+  .filter(Number.isFinite);
+
+if (numericData.length === 0) {
+  return [];
+}
+
+const maxVal = Math.max(...numericData);
+const minVal = Math.min(...numericData);
   const range = maxVal - minVal || 1;
 
   const chartWidth = width - padding * 2;
   const chartHeight = height - padding * 2;
 
-  return data.map((val, i) => ({
-    x: padding + (i / (data.length - 1)) * chartWidth,
-    y: padding + chartHeight - ((val - minVal) / range) * chartHeight,
-    value: val,
-  }));
+  const denominator = Math.max(1, data.length - 1);
+
+return numericData.map((val, i) => ({
+  x: padding + (i / denominator) * chartWidth,
+  y: padding + chartHeight - ((val - minVal) / range) * chartHeight,
+  value: val,
+}));
 }
 
 function buildYAxisTicks(minVal, maxVal, count = 4) {
+  if (!Number.isFinite(minVal) || !Number.isFinite(maxVal)) {
+  return Array.from({ length: count + 1 }, (_, i) => ({
+    value: 0,
+    ratio: i / count,
+  }));
+}
   const range = maxVal - minVal;
   if (range === 0) {
     return Array.from({ length: count + 1 }, (_, i) => ({
@@ -213,6 +242,9 @@ export function renderLineChart({
 export function renderContributionChart({ x, y, width, height, title, data }) {
   const { colors } = getTheme();
   const safeTitle = sanitizeSvgValue(String(title).toUpperCase());
+  const chartDescription = sanitizeSvgValue(
+  buildContributionSummary(data)
+);
   const chartX = 0;
   const chartY = 44;
   const chartWidth = width - 40;
@@ -226,7 +258,12 @@ export function renderContributionChart({ x, y, width, height, title, data }) {
   const xTickLabels = [formatAxisDate(startDate), formatAxisDate(middleDate), formatAxisDate(endDate)];
 
   return `
-  <g>
+  <g
+  role="group"
+  aria-labelledby="contrib-title"
+>
+  <title id="contrib-title">Contribution Activity</title>
+  <desc>${chartDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glow}" opacity="0.03" filter="url(#cardGlow)"/>
     
@@ -328,7 +365,9 @@ function describeArc(cx, cy, outerR, innerR, startAngle, endAngle) {
 export function renderDonutChart({ x, y, width, height, title, data }) {
   const { colors, chartColors } = getTheme();
   const safeTitle = sanitizeSvgValue(String(title).toUpperCase());
-
+  const chartDescription = sanitizeSvgValue(
+  buildLanguageSummary(data)
+);
   // donut dimensions
   const chartAreaWidth = width * 0.42;
   const centerX = x + chartAreaWidth / 2 + 20;
@@ -337,14 +376,18 @@ export function renderDonutChart({ x, y, width, height, title, data }) {
   const innerRadius = outerRadius * 0.62;
 
   // calculate total for percentages
-  const total = data.reduce((sum, item) => sum + item.value, 0);
+  const total = Math.max(
+  1,
+  data.reduce((sum, item) => sum + (Number(item.value) || 0), 0)
+);
 
   // build pie slices with shadows
   let currentAngle = -Math.PI / 2;
   const slices = [];
 
   data.forEach((item, i) => {
-    const sliceAngle = (item.value / total) * Math.PI * 2;
+    const value = Number(item.value) || 0;
+    const sliceAngle = (value / total) * Math.PI * 2;
     const path = describeArc(centerX, centerY, outerRadius, innerRadius, currentAngle, currentAngle + sliceAngle);
     const color = chartColors[i % chartColors.length];
 
@@ -371,7 +414,7 @@ export function renderDonutChart({ x, y, width, height, title, data }) {
 
   const legendItems = data.map((item, i) => {
     const itemY = legendStartY + i * legendItemHeight;
-    const percentage = ((item.value / total) * 100).toFixed(0);
+    const percentage = (((Number(item.value) || 0) / total) * 100).toFixed(0);
     const color = chartColors[i % chartColors.length];
     const safeLabel = sanitizeSvgValue(item.label);
     const safePercentage = sanitizeSvgValue(`${percentage}%`);
@@ -387,7 +430,12 @@ export function renderDonutChart({ x, y, width, height, title, data }) {
   }).join('');
 
   return `
-  <g>
+  <g
+  role="group"
+  aria-labelledby="language-title"
+>
+  <title id="language-title">Top Languages</title>
+  <desc>${chartDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glowSecondary}" opacity="0.03" filter="url(#cardGlow)"/>
     

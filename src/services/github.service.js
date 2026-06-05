@@ -68,10 +68,15 @@ async function assertOk(response) {
 
 /* fetch user profile from GitHub API */
 async function fetchUserProfile(username) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   const response = await fetch(`${GITHUB_API_BASE}/users/${username}`, {
     headers: getHeaders(),
+    signal: controller.signal,
   });
 
+  clearTimeout(timeout);
   await assertOk(response);
   return response.json();
 }
@@ -84,11 +89,15 @@ async function fetchUserRepos(username) {
   const MAX_PAGES = 3;
 
   while (page <= MAX_PAGES) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
     const response = await fetch(
       `${GITHUB_API_BASE}/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`,
-      { headers: getHeaders() }
+      { headers: getHeaders(), signal: controller.signal }
     );
 
+    clearTimeout(timeout);
     await assertOk(response);
 
     const data = await response.json();
@@ -115,13 +124,13 @@ async function fetchAvatarDataUri(avatarUrl) {
     return null;
   }
 
-  // Use GitHub CDN resizing to get 96x96 image (under 5KB)
+  // Use GitHub CDN to request 96×96 image (keeps response small)
   const resizedUrl = `${avatarUrl}&s=96`;
-  const MAX_SIZE_BYTES = 100 * 1024; // 100KB limit
-  const TIMEOUT_MS = 4000; // 4 second timeout
+  const AVATAR_TIMEOUT_MS = 8000;
+  const MAX_SIZE_BYTES = 100 * 1024; // 100 KB safety limit
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const timeout = setTimeout(() => controller.abort(), AVATAR_TIMEOUT_MS);
 
   try {
     const response = await fetch(resizedUrl, {

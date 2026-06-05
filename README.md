@@ -192,7 +192,7 @@ A visual trophy system highlighting GitHub milestones:
 
 | Parameter       | Type           | Default     | Description                         |
 | --------------- | -------------- | ----------- | ----------------------------------- |
-| `username`      | string         | `SamXop123` | GitHub username                     |
+| `username`      | string         | Required    | GitHub username                     |
 | `theme`         | string         | `dark`      | Visual theme (20+ supported themes) |
 | `leetcode`      | string / false | –           | LeetCode username                   |
 | `codeforces`    | string / false | –           | Codeforces username                 |
@@ -227,7 +227,6 @@ Create a `.env` file:
 
 ```env
 GITHUB_TOKEN=your_github_personal_access_token
-DEFAULT_USERNAME=SamXop123
 PORT=3000
 NODE_ENV=development
 ```

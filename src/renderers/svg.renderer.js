@@ -37,7 +37,8 @@ import emberGlowTheme from '../themes/emberglow.theme.js';
 import midnightNeonTheme from '../themes/midnightneon.theme.js';
 import pastelDreamTheme from '../themes/pasteldream.theme.js';
 import { sanitizeSvgValue, sanitizeSvgHref } from '../utils/svg-sanitizer.js';
-
+import { validateThemeAccessibility }
+  from '../utils/theme-accessibility.js';
 const LAYOUT = {
   width: 960,
   padding: 28,
@@ -69,7 +70,22 @@ const themes = {
   midnightneon: midnightNeonTheme,
   pasteldream: pastelDreamTheme,
 };
+Object.entries(themes).forEach(
+  ([name, theme]) => {
+    const result =
+      validateThemeAccessibility(theme);
 
+    if (
+      !result.primaryPass ||
+      !result.secondaryPass
+    ) {
+      console.warn(
+        `[Accessibility] Theme "${name}" may have low contrast`,
+        result
+      );
+    }
+  }
+);
 export const SUPPORTED_THEME_NAMES = Object.freeze(Object.keys(themes));
 
 // current active theme
@@ -91,7 +107,7 @@ export function renderDefs() {
   const { colors } = currentTheme;
 
   return `
-  <defs>
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="${colors.gradientStart}" stop-opacity="0.15"/>
@@ -145,6 +161,7 @@ export function renderBackground(width, height) {
   const { colors } = currentTheme;
 
   return `
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="${width}" height="${height}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="${colors.background}"/>
   
@@ -158,9 +175,9 @@ export function renderBackground(width, height) {
   <ellipse cx="${width / 2}" cy="0" rx="${width * 0.4}" ry="120" fill="${colors.glow}" opacity="0.08"/>
   
   <!-- border with glow -->
-  <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>`;
+  <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>`;
 }
-
 // render a modern card container
 export function renderCard({ x, y, width, height, title, glowColor }) {
   const { colors } = currentTheme;
@@ -475,7 +492,15 @@ function renderTrophyBadge({ x, y, size, tier, icon, label, value, uniqueId }) {
 // renders the trophy row
 export function renderTrophyRow({ x, y, width, height, data }) {
   const { colors } = currentTheme;
-
+  const trophyDescription = sanitizeSvgValue(
+  `Achievements: ${data.commits} commits, ` +
+  `${data.prs} pull requests, ` +
+  `${data.reviews} reviews, ` +
+  `${data.issues} issues, ` +
+  `${data.repos} repositories, ` +
+  `${data.stars} stars, ` +
+  `${data.followers} followers.`
+);
   // trophy icons
   const icons = {
     commits: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
@@ -517,7 +542,12 @@ export function renderTrophyRow({ x, y, width, height, data }) {
 
   // card background
   const cardContent = `
-  <g>
+  <g
+  role="group"
+  aria-labelledby="trophy-title"
+>
+  <title id="trophy-title">Achievement Trophies</title>
+  <desc>${trophyDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glow}" opacity="0.03" filter="url(#cardGlow)"/>
     
@@ -564,8 +594,28 @@ export function renderTrophyRow({ x, y, width, height, data }) {
 }
 
 // wrap content in SVG root element
-export function wrapSvg(content, width, height) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+export function wrapSvg(
+  content,
+  width,
+  height,
+  accessibility = {}
+) {
+  const title = accessibility.title || 'GitHub Dashboard';
+  const description = accessibility.description || 'GitHub profile statistics';
+
+  return `
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="${width}"
+  height="${height}"
+  viewBox="0 0 ${width} ${height}"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">${title}</title>
+<desc id="dashboard-desc">${description}</desc>
+
 ${renderDefs()}
 ${content}
 </svg>`;

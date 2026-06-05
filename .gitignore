@@ -33,3 +33,5 @@ DEPLOYMENT.md
 # Vercel
 .vercel
 
+# Coverage reports
+coverage/

@@ -10,7 +10,7 @@ import {
   LAYOUT,
   renderTrophyRow,
 } from '../renderers/svg.renderer.js';
-import { renderContributionChart, generateFakeContributionData, renderDonutChart } from '../renderers/chart.renderer.js';
+import { renderContributionChart, renderDonutChart } from '../renderers/chart.renderer.js';
 import { getGitHubUserData } from '../services/github.service.js';
 import { getContributionData } from '../services/github-graphql.service.js';
 import { getLeetCodeData } from '../services/leetcode.service.js';
@@ -35,8 +35,6 @@ router.use((req, res, next) => {
   next();
 });
 
-const DEFAULT_USERNAME = process.env.DEFAULT_USERNAME || 'SamXop123';
-
 function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
@@ -44,12 +42,17 @@ function formatNumber(num) {
 }
 
 function getTopLanguages(repos, max = 5) {
+  if (!Array.isArray(repos) || repos.length === 0) {
+  return [];
+}
   const langCounts = {};
   repos.forEach((repo) => {
-    if (repo.language) {
-      langCounts[repo.language] = (langCounts[repo.language] || 0) + 1;
-    }
-  });
+  const language = repo?.language;
+
+  if (typeof language === 'string' && language.trim()) {
+    langCounts[language] = (langCounts[language] || 0) + 1;
+  }
+});
   return Object.entries(langCounts)
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value)
@@ -70,7 +73,7 @@ router.get('/', async (req, res) => {
     codeforces,
     codechef,
     shouldRenderLeetCode,
-  } = normalizeProfileQuery(req.query, { defaultUsername: DEFAULT_USERNAME });
+  } = normalizeProfileQuery(req.query);
   setTheme(theme);
 
   if (!isUsernameValid) {
@@ -206,20 +209,31 @@ router.get('/', async (req, res) => {
     const recentDays = contributionData.days.slice(-30);
     chartData = recentDays.map(day => day.count);
   } else {
-    chartData = generateFakeContributionData(30);
+    // Do not fall back to randomly generated data when the GitHub GraphQL
+    // API is unavailable. Embedding fake contribution bars in a README
+    // misleads viewers into believing they represent real activity.
+    // Use zeroed-out bars instead so the chart is visually consistent but
+    // clearly reflects that no data is available.
+    chartData = Array(30).fill(0);
   }
 
-  const topLanguages = getTopLanguages(data.repos, 5);
+const topLanguages = getTopLanguages(data?.repos ?? [], 5);
 
+if (topLanguages.length === 0) {
+  topLanguages.push({
+    label: 'No Data',
+    value: 1,
+  });
+}
   const trophyData = {
-    commits: contributionData?.totalContributions || 0,
-    prs: contributionData?.totalPRs || 0,
-    issues: contributionData?.totalIssues || 0,
-    repos: data.publicRepos || 0,
-    stars: data.totalStars || 0,
-    followers: data.followers || 0,
-    reviews: contributionData?.totalReviews || 0,
-  };
+  commits: Number(contributionData?.totalContributions) || 0,
+  prs: Number(contributionData?.totalPRs) || 0,
+  issues: Number(contributionData?.totalIssues) || 0,
+  repos: Number(data?.publicRepos) || 0,
+  stars: Number(data?.totalStars) || 0,
+  followers: Number(data?.followers) || 0,
+  reviews: Number(contributionData?.totalReviews) || 0,
+};
 
   const cpSectionHeight = showCPSection ? 156 : 0;
   const cpRowY = row2Y + row2Height + LAYOUT.cardGap;
@@ -274,7 +288,20 @@ router.get('/', async (req, res) => {
         }),
   ].join('\n');
 
-  const svg = wrapSvg(content, width, totalHeight);
+  const svg = wrapSvg(
+  content,
+  width,
+  totalHeight,
+  {
+    title: `GitHub Dashboard for ${username}`,
+    description:
+      `GitHub profile statistics for ${username}. ` +
+      `${formatNumber(contributionData?.totalContributions || 0)} contributions, ` +
+      `${formatNumber(data.publicRepos)} repositories, ` +
+      `${formatNumber(data.followers)} followers, ` +
+      `${topLanguages.map(l => l.label).join(', ')} languages.`
+  }
+);
 
   res.setHeader('Content-Type', 'image/svg+xml');
   res.setHeader('Cache-Control', 'public, max-age=1800');

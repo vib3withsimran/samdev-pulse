@@ -1,19 +1,27 @@
 {
   "name": "samdev_pulse",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "The perfect README generator for GitHub profiles",
   "main": "src/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
+    "lint": "node scripts/quality.js lint",
+    "format": "node scripts/quality.js format",
+    "format:check": "node scripts/quality.js format:check",
+    "check": "npm run lint && npm run test:unit",
+    "audit": "npm audit --audit-level=high",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test:visual": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/renderers/__tests__/visual-workflow.test.js",
     "previews": "node scripts/generate-previews.js",
     "test:deployment": "node test-deployment.js",
-    "test:unit": "node --test src/utils/svg-sanitizer.test.js src/utils/query-validation.test.js"
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [
     "github",

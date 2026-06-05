@@ -1,9 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.15"/>
@@ -51,6 +63,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0b1020"/>
   
@@ -65,6 +78,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -122,7 +136,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -178,7 +199,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
       font-size="32" font-weight="700" fill="#e6f7ff">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#6f8aa8" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#6f8aa8" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -236,14 +257,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
       font-size="11" fill="#6f8aa8" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f38ba8" stop-opacity="0.15"/>
@@ -291,6 +326,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1e1e2e"/>
   
@@ -305,6 +341,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -362,7 +399,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -418,7 +462,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
       font-size="32" font-weight="700" fill="#cdd6f4">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#a6adc8" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#a6adc8" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -476,14 +520,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
       font-size="11" fill="#a6adc8" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.15"/>
@@ -531,6 +589,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0a0a0f"/>
   
@@ -545,6 +604,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -602,7 +662,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -658,7 +725,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
       font-size="32" font-weight="700" fill="#ffffff">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#64748b" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#64748b" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -716,14 +783,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
       font-size="11" fill="#64748b" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#bd93f9" stop-opacity="0.15"/>
@@ -771,6 +852,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282a36"/>
   
@@ -785,6 +867,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -842,7 +925,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -898,7 +988,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
       font-size="32" font-weight="700" fill="#f8f8f2">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#6272a4" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#6272a4" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -956,14 +1046,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
       font-size="11" fill="#6272a4" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff7849" stop-opacity="0.15"/>
@@ -1011,6 +1115,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a0f0f"/>
   
@@ -1025,6 +1130,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -1082,7 +1188,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -1138,7 +1251,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
       font-size="32" font-weight="700" fill="#fff1e6">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#b78d7a" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#b78d7a" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -1196,14 +1309,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
       font-size="11" fill="#b78d7a" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#6ee7b7" stop-opacity="0.15"/>
@@ -1251,6 +1378,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0f1a14"/>
   
@@ -1265,6 +1393,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -1322,7 +1451,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -1378,7 +1514,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
       font-size="32" font-weight="700" fill="#e8f5e9">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#87a494" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#87a494" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -1436,14 +1572,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
       font-size="11" fill="#87a494" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#b8bb26" stop-opacity="0.15"/>
@@ -1491,6 +1641,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282828"/>
   
@@ -1505,6 +1656,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -1562,7 +1714,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -1618,7 +1777,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
       font-size="32" font-weight="700" fill="#ebdbb2">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#665c54" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#665c54" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -1676,14 +1835,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
       font-size="11" fill="#665c54" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.15"/>
@@ -1731,6 +1904,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#fafbfc"/>
   
@@ -1745,6 +1919,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -1802,7 +1977,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -1858,7 +2040,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
       font-size="32" font-weight="700" fill="#1f2328">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#8b949e" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#8b949e" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -1916,14 +2098,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
       font-size="11" fill="#8b949e" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#29b6f6" stop-opacity="0.15"/>
@@ -1971,6 +2167,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#263238"/>
   
@@ -1985,6 +2182,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -2042,7 +2240,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -2098,7 +2303,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
       font-size="32" font-weight="700" fill="#eceff1">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#90a4ae" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#90a4ae" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -2156,14 +2361,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
       font-size="11" fill="#90a4ae" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunset 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
@@ -2211,6 +2430,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a1024"/>
   
@@ -2225,6 +2445,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -2282,7 +2503,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -2338,7 +2566,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
       font-size="32" font-weight="700" fill="#ffeede">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#ad8ca2" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#ad8ca2" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -2396,14 +2624,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
       font-size="11" fill="#ad8ca2" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00f5ff" stop-opacity="0.15"/>
@@ -2451,6 +2693,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#09090f"/>
   
@@ -2465,6 +2708,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -2522,7 +2766,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -2578,7 +2829,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
       font-size="32" font-weight="700" fill="#f5f5ff">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#8c8cad" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#8c8cad" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -2636,14 +2887,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
       font-size="11" fill="#8c8cad" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#a6e22e" stop-opacity="0.15"/>
@@ -2691,6 +2956,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#272822"/>
   
@@ -2705,6 +2971,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -2762,7 +3029,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -2818,7 +3092,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
       font-size="32" font-weight="700" fill="#f8f8f2">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#75715e" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#75715e" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -2876,14 +3150,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
       font-size="11" fill="#75715e" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#5e81ac" stop-opacity="0.15"/>
@@ -2931,6 +3219,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#2e3440"/>
   
@@ -2945,6 +3234,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -3002,7 +3292,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -3058,7 +3355,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
       font-size="32" font-weight="700" fill="#eceff4">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#4c566a" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#4c566a" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -3116,14 +3413,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
       font-size="11" fill="#4c566a" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#5fd7ff" stop-opacity="0.15"/>
@@ -3171,6 +3482,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0f111a"/>
   
@@ -3185,6 +3497,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -3242,7 +3555,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -3298,7 +3618,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
       font-size="32" font-weight="700" fill="#d8dee9">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#7f8c9d" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#7f8c9d" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -3356,14 +3676,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
       font-size="11" fill="#7f8c9d" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#61afef" stop-opacity="0.15"/>
@@ -3411,6 +3745,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282c34"/>
   
@@ -3425,6 +3760,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -3482,7 +3818,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -3538,7 +3881,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
       font-size="32" font-weight="700" fill="#abb2bf">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#5c6370" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#5c6370" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -3596,14 +3939,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
       font-size="11" fill="#5c6370" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffb3c1" stop-opacity="0.15"/>
@@ -3651,6 +4008,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1f1d2b"/>
   
@@ -3665,6 +4023,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -3722,7 +4081,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -3778,7 +4144,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
       font-size="32" font-weight="700" fill="#f8f4ff">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#aea4c9" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#aea4c9" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -3836,14 +4202,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
       font-size="11" fill="#aea4c9" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#eb6f92" stop-opacity="0.15"/>
@@ -3891,6 +4271,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#191724"/>
   
@@ -3905,6 +4286,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -3962,7 +4344,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -4018,7 +4407,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
       font-size="32" font-weight="700" fill="#e0def4">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#6e6a86" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#6e6a86" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -4076,14 +4465,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
       font-size="11" fill="#6e6a86" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#2aa198" stop-opacity="0.15"/>
@@ -4131,6 +4534,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#002b36"/>
   
@@ -4145,6 +4549,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -4202,7 +4607,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -4258,7 +4670,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
       font-size="32" font-weight="700" fill="#fdf6e3">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#839496" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#839496" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -4316,14 +4728,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
       font-size="11" fill="#839496" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff7edb" stop-opacity="0.15"/>
@@ -4371,6 +4797,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#241b2f"/>
   
@@ -4385,6 +4812,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -4442,7 +4870,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -4498,7 +4933,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
       font-size="32" font-weight="700" fill="#f8f8f2">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#9d88c2" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#9d88c2" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -4556,14 +4991,28 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
       font-size="11" fill="#9d88c2" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
 
 exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`] = `
-"<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="600" viewBox="0 0 960 600">
+"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="960"
+  height="600"
+  viewBox="0 0 960 600"
+  role="img"
+  aria-labelledby="dashboard-title dashboard-desc"
+>
+<title id="dashboard-title">GitHub Dashboard</title>
+<desc id="dashboard-desc">GitHub profile statistics</desc>
 
-  <defs>
+
+  <defs aria-hidden="true">
     <!-- main gradient -->
     <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#7aa2f7" stop-opacity="0.15"/>
@@ -4611,6 +5060,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
     </pattern>
   </defs>
 
+  <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a1b26"/>
   
@@ -4625,6 +5075,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
   
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
+</g>
 
   <g>
     <!-- card glow -->
@@ -4682,7 +5133,14 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
       <circle cx="388" cy="56" r="2" fill="#fff" opacity="0.9"/>
     
   </g>
-<g>
+
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>LeetCode statistics available, Codeforces statistics available</desc>
+  
       <g>
         <rect x="28" y="320" width="442" height="140"
           rx="16" ry="16"
@@ -4738,7 +5196,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
       font-size="32" font-weight="700" fill="#c0caf5">N/A</text>
     <text x="316" y="425"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="#565f89" letter-spacing="0.3">Rating</text>
+      font-size="11" fill="#565f89" letter-spacing="0.3">Rank</text>
   
       </g>
     
@@ -4796,6 +5254,8 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
       font-size="11" fill="#565f89" letter-spacing="0.3">Max Rating</text>
   
       </g>
-    </g>
+    
+</g>
+
 </svg>"
 `;
