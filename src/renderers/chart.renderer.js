@@ -266,22 +266,22 @@ export function renderContributionChart({ x, y, width, height, title, data }) {
   <desc>${chartDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glow}" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.cardBackground}"/>
-    
+
     <!-- inner gradient -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="url(#mainGradient)" opacity="0.3"/>
-    
+
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
-    
+
     <!-- title -->
     <text x="${x + 20}" y="${y + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-    
+
     <!-- title accent -->
     <rect x="${x + 20}" y="${y + 36}" width="28" height="2" rx="1" fill="url(#accentGradient)" opacity="0.7"/>
-    
+
     <!-- chart -->
     <g transform="translate(${x + 20}, ${y})">
       ${renderLineChart({
@@ -438,26 +438,26 @@ export function renderDonutChart({ x, y, width, height, title, data }) {
   <desc>${chartDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glowSecondary}" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.cardBackground}"/>
-    
+
     <!-- inner gradient -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="url(#mainGradient)" opacity="0.3"/>
-    
+
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
-    
+
     <!-- title -->
     <text x="${x + 20}" y="${y + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-    
+
     <!-- title accent -->
     <rect x="${x + 20}" y="${y + 36}" width="28" height="2" rx="1" fill="url(#accentGradient)" opacity="0.7"/>
-    
+
     <!-- donut chart -->
     ${slices.join('\n    ')}
     ${centerDeco}
-    
+
     <!-- legend -->
     ${legendItems}
   </g>`;

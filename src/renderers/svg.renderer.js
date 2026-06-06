@@ -114,19 +114,19 @@ export function renderDefs() {
       <stop offset="50%" stop-color="${colors.gradientMid}" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="${colors.gradientEnd}" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="${colors.gradientStart}"/>
       <stop offset="100%" stop-color="${colors.gradientEnd}"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -135,7 +135,7 @@ export function renderDefs() {
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -143,12 +143,12 @@ export function renderDefs() {
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="${colors.border}" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="${colors.border}" stroke-width="0.5" opacity="0.2"/>
@@ -164,16 +164,16 @@ export function renderBackground(width, height) {
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="${width}" height="${height}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="${colors.background}"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="${width}" height="${height}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="${width}" height="${height}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="${width / 2}" cy="0" rx="${width * 0.4}" ry="120" fill="${colors.glow}" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="${LAYOUT.borderRadius}" ry="${LAYOUT.borderRadius}" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>`;
@@ -188,19 +188,19 @@ export function renderCard({ x, y, width, height, title, glowColor }) {
   <g>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${glow}" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.cardBackground}"/>
-    
+
     <!-- inner gradient -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.5"/>
-    
+
     <!-- title -->
     <text x="${x + 20}" y="${y + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-    
+
     <!-- title underline accent -->
     <rect x="${x + 20}" y="${y + 36}" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>`;
@@ -219,7 +219,7 @@ export function renderStatItem({ x, y, label, value, icon, accentColor, showProg
   if (valueStr.length > 8) fontSize = 14;
   else if (valueStr.length > 6) fontSize = 18;
   else if (valueStr.length > 4) fontSize = 24;
-  
+
 
   let iconElement = '';
   if (icon) {
@@ -267,11 +267,11 @@ function renderVerticalEMH({ x, y, easy, medium, hard, accentColor }) {
     <!-- easy -->
     <text x="${x}" y="${y - 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${easyColor}">E</text>
     <text x="${x + labelWidth}" y="${y - 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeEasy}</text>
-    
+
     <!-- medium -->
     <text x="${x}" y="${y}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${medColor}">M</text>
     <text x="${x + labelWidth}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeMedium}</text>
-    
+
     <!-- hard -->
     <text x="${x}" y="${y + 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${hardColor}">H</text>
     <text x="${x + labelWidth}" y="${y + 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeHard}</text>
@@ -318,22 +318,22 @@ export function renderCardWithStats({ x, y, width, height, title, stats, cardAcc
   <g>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${glow}" opacity="0.04" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.cardBackground}"/>
-    
+
     <!-- inner gradient -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="url(#mainGradient)" opacity="0.3"/>
-    
+
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
-    
+
     <!-- title -->
     <text x="${x + 20}" y="${y + 30}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-    
+
     <!-- title accent line -->
     <rect x="${x + 20}" y="${y + 40}" width="28" height="2" rx="1" fill="url(#accentGradient)" opacity="0.7"/>
-    
+
     ${statsContent}
   </g>`;
 }
@@ -398,7 +398,7 @@ export function renderHeader({ x, y, title, subtitle, avatarUrl, align = 'left' 
     <!-- title with gradient -->
     <text x="${titleX}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="url(#accentGradient)" text-anchor="${titleAnchor}">${safeTitle}</text>
     ${safeSubtitle ? `<text x="${titleX}" y="${y + 22}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="${colors.mutedText}" text-anchor="${subtitleAnchor}">${safeSubtitle}</text>` : ''}
-    
+
     <!-- branding -->
     <text x="${brandingX}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500" fill="${colors.mutedText}" text-anchor="${brandingAnchor}" opacity="0.6">samdev-pulse</text>
   </g>`;
@@ -459,31 +459,31 @@ function renderTrophyBadge({ x, y, size, tier, icon, label, value, uniqueId }) {
   <g>
     <!-- outer glow -->
     <polygon points="${hexPath}" fill="${tier.color}" opacity="${tier.glowIntensity * 0.3}" filter="url(#softGlow)"/>
-    
+
     <!-- main hexagon background -->
     <polygon points="${hexPath}" fill="${colors.cardBackground}"/>
-    
+
     <!-- gradient overlay -->
     <polygon points="${hexPath}" fill="url(#mainGradient)" opacity="0.4"/>
-    
+
     <!-- tier colored border -->
     <polygon points="${hexPath}" fill="none" stroke="${tier.color}" stroke-width="2" opacity="0.8"/>
-    
+
     <!-- inner hexagon accent -->
     <polygon points="${innerHexPoints.join(' ')}" fill="none" stroke="${tier.color}" stroke-width="1" opacity="0.3"/>
-    
+
     <!-- icon -->
     <g transform="translate(${x + halfSize - 10}, ${y + halfSize - 18})">
       <path d="${icon}" fill="${tier.color}" opacity="0.9" transform="scale(0.9)"/>
     </g>
-    
+
     <!-- tier badge -->
     <circle cx="${x + size - 8}" cy="${y + 12}" r="10" fill="${tier.color}"/>
     <text x="${x + size - 8}" y="${y + 16}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="${colors.background}" text-anchor="middle">${safeTier}</text>
-    
+
     <!-- label -->
     <text x="${x + halfSize}" y="${y + size + 14}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="${colors.secondaryText}" text-anchor="middle">${safeLabel}</text>
-    
+
     <!-- value -->
     <text x="${x + halfSize}" y="${y + size + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="${colors.primaryText}" text-anchor="middle">${safeValue}</text>
   </g>`;
@@ -550,19 +550,19 @@ export function renderTrophyRow({ x, y, width, height, data }) {
   <desc>${trophyDescription}</desc>
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.glow}" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${colors.cardBackground}"/>
-    
+
     <!-- inner gradient -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="url(#mainGradient)" opacity="0.25"/>
-    
+
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
-    
+
     <!-- title -->
     <text x="${x + width / 2}" y="${y + 24}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5" text-anchor="middle">ACHIEVEMENT TROPHIES</text>
-    
+
     <!-- title accent line -->
     <rect x="${x + width / 2 - 40}" y="${y + 32}" width="80" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>`;

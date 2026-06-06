@@ -2014,3 +2014,95 @@ html {
     box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
   }
 }
+
+@media (min-width: 769px) {
+  html {
+    font-size: 15px;
+  }
+
+  :root {
+    --spacing-xs: 0.375rem;
+    --spacing-sm: 0.625rem;
+    --spacing-md: 0.875rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2.25rem;
+    --spacing-3xl: 3rem;
+  }
+
+  .navbtn ul {
+    gap: 2.5rem;
+    padding: 1rem;
+  }
+
+  .navlogo img {
+    height: 48px;
+  }
+
+  .navlogo {
+    padding-left: 2.5rem;
+  }
+
+  .navbtn {
+    padding-right: 2.5rem;
+  }
+
+  .nav-actions {
+    padding-right: 2.5rem;
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .theme-preview {
+    height: 100px;
+  }
+
+  .theme-info {
+    padding: var(--spacing-md);
+  }
+
+  .preview-panel {
+    padding: var(--spacing-xl);
+  }
+
+  .preview-controls {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .input-row {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .preview-frame {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .preview-frame img {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .code-block {
+    padding: var(--spacing-md);
+    font-size: 0.875rem;
+  }
+
+  .params-table {
+    padding: var(--spacing-xl);
+  }
+
+  .profile-avatar {
+    max-width: 260px;
+  }
+}
