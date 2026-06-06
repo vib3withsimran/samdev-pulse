@@ -77,6 +77,7 @@ describe('query-validation.js', () => {
       codeforces: 'tourist',
       codechef: 'chef-user',
       shouldRenderLeetCode: false,
+      customThemeOverrides: {},
     });
   });
 

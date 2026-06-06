@@ -92,8 +92,12 @@ export const SUPPORTED_THEME_NAMES = Object.freeze(Object.keys(themes));
 let currentTheme = darkTheme;
 
 // set active theme
-export function setTheme(themeName) {
-  currentTheme = themes[themeName] || darkTheme;
+export function setTheme(themeInput) {
+  if (themeInput && typeof themeInput === 'object' && themeInput.colors) {
+    currentTheme = themeInput;
+  } else {
+    currentTheme = themes[themeInput] || darkTheme;
+  }
   return currentTheme;
 }
 

@@ -24,6 +24,7 @@ import { trackProfileRequest } from '../services/analytics.service.js';
 import { CF_RANK_MAP } from '../constants.js';
 import { normalizeProfileQuery, normalizeTheme } from '../utils/query-validation.js';
 import { buildDashboardAccessibility } from '../utils/svg-accessibility.js';
+import { createHybridTheme, validateThemeAccessibility } from '../utils/theme-accessibility.js';
 
 const router = Router();
 
@@ -74,8 +75,18 @@ router.get('/', async (req, res) => {
     codeforces,
     codechef,
     shouldRenderLeetCode,
+    customThemeOverrides,
   } = normalizeProfileQuery(req.query);
-  setTheme(theme);
+
+  let activeTheme = setTheme(theme);
+  if (customThemeOverrides && Object.keys(customThemeOverrides).length > 0) {
+    const hybridTheme = createHybridTheme(activeTheme, customThemeOverrides);
+    const contrastResult = validateThemeAccessibility(hybridTheme);
+    if (!contrastResult.primaryPass || !contrastResult.secondaryPass) {
+      console.warn(`[Accessibility] Custom theme has low contrast:`, contrastResult);
+    }
+    activeTheme = setTheme(hybridTheme);
+  }
 
   if (!isUsernameValid) {
     return sendGracefulErrorSvg(res, {
@@ -328,7 +339,12 @@ if (topLanguages.length === 0) {
 
 // Loading spinner endpoint
 router.get('/loading', (req, res) => {
-  setTheme(normalizeTheme(req.query.theme));
+  const { theme, customThemeOverrides } = normalizeProfileQuery(req.query);
+  let activeTheme = setTheme(theme);
+  if (customThemeOverrides && Object.keys(customThemeOverrides).length > 0) {
+    const hybridTheme = createHybridTheme(activeTheme, customThemeOverrides);
+    activeTheme = setTheme(hybridTheme);
+  }
   return sendLoadingSpinner(res);
 });
 

@@ -64,6 +64,22 @@ export function normalizeCPHandle(value) {
   return handle || null;
 }
 
+export function isValidHexColor(value) {
+  const normalized = normalizeString(value);
+  if (!normalized) return false;
+  return /^#?([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/.test(normalized);
+}
+
+export function normalizeHexColor(value) {
+  const normalized = normalizeString(value);
+  if (!isValidHexColor(normalized)) return null;
+  let clean = normalized.replace('#', '');
+  if (clean.length === 3) {
+    clean = clean.split('').map(c => c + c).join('');
+  }
+  return `#${clean.toLowerCase()}`;
+}
+
 export function normalizeProfileQuery(query) {
   const usernameResult = normalizeGitHubUsername(query.username);
   const leetcode = normalizeCPHandle(query.leetcode);
@@ -82,6 +98,14 @@ export function normalizeProfileQuery(query) {
 
   const isPlatformHandlesValid = isLeetcodeValid && isCodeforcesValid && isCodechefValid;
 
+  const customThemeOverrides = {};
+  const overrideKeys = ['bg', 'text', 'accent', 'card_bg', 'border', 'sec_text', 'muted_text'];
+  overrideKeys.forEach(key => {
+    if (query[key] && isValidHexColor(query[key])) {
+      customThemeOverrides[key] = normalizeHexColor(query[key]);
+    }
+  });
+
   return {
     theme: normalizeTheme(query.theme),
     align: normalizeAlign(query.align),
@@ -92,5 +116,6 @@ export function normalizeProfileQuery(query) {
     codeforces,
     codechef,
     shouldRenderLeetCode: Boolean(leetcode),
+    customThemeOverrides,
   };
 }
